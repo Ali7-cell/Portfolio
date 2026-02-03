@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Netlify Form Submission (AJAX)
+// Formspree Form Submission (AJAX)
 const contactForm = document.getElementById('contact-form');
 const successMessage = document.getElementById('success-message');
 
@@ -185,15 +185,28 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(contactForm);
+        const action = contactForm.getAttribute('action');
 
-        fetch("/", {
+        fetch(action, {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString(),
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         })
-            .then(() => {
-                contactForm.style.display = 'none';
-                successMessage.style.display = 'flex';
+            .then(response => {
+                if (response.ok) {
+                    contactForm.style.display = 'none';
+                    successMessage.style.display = 'flex';
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    })
+                }
             })
             .catch((error) => alert("Submission failed: " + error));
     });

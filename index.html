@@ -503,15 +503,15 @@
                 out, and let’s collaborate to create something extraordinary that transforms your industry.</p>
 
             <div class="contact-wrapper-3d">
-                <form class="contact-form-3d" id="contact-form" name="contact" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="contact">
+                <form class="contact-form-3d" id="contact-form" action="https://formspree.io/f/mrkahn425@gmail.com"
+                    method="POST">
                     <div class="input-group">
                         <input type="text" name="name" required>
                         <label>Your Name</label>
                         <span class="highlight-bar"></span>
                     </div>
                     <div class="input-group">
-                        <input type="email" name="email" required>
+                        <input type="email" name="_replyto" required>
                         <label>Your Email</label>
                         <span class="highlight-bar"></span>
                     </div>
@@ -525,6 +525,8 @@
                         <label>Your Message</label>
                         <span class="highlight-bar"></span>
                     </div>
+                    <!-- Anti-spam hidden field -->
+                    <input type="text" name="_gotcha" style="display:none">
                     <button type="submit" class="submit-btn-3d">Send Message <i class="fas fa-paper-plane"></i></button>
                 </form>
 
