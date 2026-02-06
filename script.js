@@ -70,12 +70,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailIcon = document.querySelector('.skill-main-icon i');
     const detailJson = document.getElementById('detail-json');
     const toolList = document.getElementById('detail-tool-list');
+    const githubBtn = document.getElementById('detail-github-btn'); // New Button
 
-    const showOverlay = (title, desc, iconClass, records, type = 'skill') => {
+    const showOverlay = (title, desc, iconClass, records, type = 'skill', githubLink = null) => {
         // Set basic info
         detailTitle.textContent = title;
         detailDesc.textContent = desc;
         detailIcon.className = iconClass;
+
+        // Handle GitHub Button
+        if (githubBtn) {
+            if (githubLink) {
+                githubBtn.href = githubLink;
+                githubBtn.style.display = 'inline-flex';
+            } else {
+                githubBtn.style.display = 'none';
+                githubBtn.href = '#';
+            }
+        }
 
         if (type === 'education') {
             // Education JSON Console
@@ -158,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const desc = card.querySelector('p').textContent;
             const iconClass = 'fas fa-project-diagram';
             const records = JSON.parse(card.getAttribute('data-record') || '{}');
-            showOverlay(title, desc, iconClass, records, 'project');
+            const githubLink = card.getAttribute('data-github'); // Read GitHub Link
+            showOverlay(title, desc, iconClass, records, 'project', githubLink);
         });
     });
 
