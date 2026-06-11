@@ -23,13 +23,14 @@ export default function Hero() {
           }}
         >
           <video
-            src="/assets/images/Ali.mp4"
             autoPlay
             loop
             muted
             playsInline
             className="w-full h-full object-cover"
-          />
+          >
+            <source src="/assets/images/Ali.mp4" type="video/mp4" />
+          </video>
         </div>
       </motion.div>
 

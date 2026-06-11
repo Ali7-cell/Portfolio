@@ -57,21 +57,23 @@ export default function About() {
               <div className="relative aspect-video bg-[#0f1629] flex items-center justify-center overflow-hidden">
                 {isPlaying ? (
                   <video
-                    src="/assets/images/Ali.mp4"
                     controls
                     autoPlay
                     className="w-full h-full object-cover"
-                  />
+                  >
+                    <source src="/assets/images/Ali.mp4" type="video/mp4" />
+                  </video>
                 ) : (
                   <>
                     <video
-                      src="/assets/images/Ali.mp4"
                       className="w-full h-full object-cover opacity-60"
                       autoPlay
                       loop
                       muted
                       playsInline
-                    />
+                    >
+                      <source src="/assets/images/Ali.mp4" type="video/mp4" />
+                    </video>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <button
                         onClick={() => setIsPlaying(true)}
