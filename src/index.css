@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 25% 4%;
+    --foreground: 0 0% 98%;
+    --card: 230 30% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 230 30% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 30% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 230 20% 15%;
+    --muted-foreground: 240 10% 72%;
+    --accent: 187 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 262 60% 25%;
+    --input: 230 30% 12%;
+    --ring: 262 100% 65%;
+    --radius: 0.75rem;
+
+    --space-black: #0a0a0f;
+    --navy-blue: #0f1629;
+    --violet-primary: #7c4dff;
+    --violet-light: #b388ff;
+    --cyan-glow: #00e5ff;
+    --star-white: rgba(255, 255, 255, 0.8);
+    --moon-gray: #a0a0b8;
+    --orbit-gray: rgba(160, 160, 184, 0.3);
+    --glass-card: rgba(15, 22, 41, 0.6);
+    --glass-border: rgba(124, 77, 255, 0.15);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--space-black);
+    color: var(--star-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    @apply border-border/20;
+  }
+}
+
+/* Star Field Animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-500px) translateY(500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 40px rgba(124, 77, 255, 0.4), 0 0 80px rgba(124, 77, 255, 0.2); }
+  50% { box-shadow: 0 0 60px rgba(124, 77, 255, 0.6), 0 0 100px rgba(124, 77, 255, 0.3); }
+}
+
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+
+@keyframes draw-line {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(15, 22, 41, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 77, 255, 0.15);
+}
+
+.glass-input {
+  background: rgba(15, 22, 41, 0.8);
+  border: 1px solid rgba(124, 77, 255, 0.2);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--violet-primary);
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.2);
+}
+
+.glass-input::placeholder {
+  color: var(--moon-gray);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff, #b388ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effects */
+.glow-violet {
+  box-shadow: 0 0 30px rgba(124, 77, 255, 0.3);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 77, 255, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 77, 255, 0.6);
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 77, 255, 0.4);
+  color: white;
+}
