@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   FiMail,
@@ -5,16 +6,10 @@ import {
   FiLinkedin,
   FiGithub,
   FiSend,
-  FiExternalLink,
   FiCode,
+  FiCheckCircle,
 } from 'react-icons/fi';
 import { FaKaggle } from 'react-icons/fa';
-
-const GOOGLE_FORM_EMBED =
-  'https://docs.google.com/forms/d/e/1FAIpQLSd2RTxf2l29RDf4IrnKZDzepB74V33x2l-I6EZFm8sV34lJxw/viewform?embedded=true';
-
-const GOOGLE_FORM_LINK =
-  'https://forms.gle/W3P6WRmX5BZftMNr7';
 
 const socialLinks = [
   {
@@ -45,6 +40,23 @@ const socialLinks = [
 ];
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = `Portfolio Message from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    window.location.href = `mailto:aliliaqat22731279@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
+  };
+
   return (
     <section id="contact" className="relative py-20 md:py-32 px-4" style={{ zIndex: 1 }}>
       <div className="max-w-[1200px] mx-auto">
@@ -125,20 +137,9 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-
-            {/* Open form in new tab button */}
-            <a
-              href={GOOGLE_FORM_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[rgba(124,77,255,0.35)] text-white font-medium rounded-full text-sm transition-all duration-300 hover:bg-[rgba(124,77,255,0.15)] active:scale-95 touch-manipulation"
-            >
-              <FiExternalLink size={15} />
-              Open Form in New Tab
-            </a>
           </motion.div>
 
-          {/* ── Right: Google Form Embed ── */}
+          {/* ── Right: Contact Form ── */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -146,29 +147,90 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
             className="md:col-span-3"
           >
-            <div className="glass rounded-2xl overflow-hidden">
-              {/* Header bar */}
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-[rgba(124,77,255,0.12)]">
-                <span className="w-2 h-2 rounded-full bg-[#7c4dff] animate-pulse" />
-                <span className="text-white text-sm font-medium font-['Space_Grotesk']">
-                  Send a Message
-                </span>
-              </div>
-
-              {/* Embedded Google Form */}
-              <iframe
-                src={GOOGLE_FORM_EMBED}
-                title="Contact Form"
-                className="w-full"
-                style={{
-                  height: '520px',
-                  border: 'none',
-                  background: 'transparent',
-                  colorScheme: 'dark',
-                }}
-                loading="lazy"
-                allowFullScreen
-              />
+            <div className="glass rounded-2xl p-5 sm:p-6 md:p-10">
+              {!submitted ? (
+                <>
+                  <h3 className="font-['Space_Grotesk'] text-lg md:text-xl font-medium text-white text-center mb-6">
+                    Send a Message
+                  </h3>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div>
+                      <label className="text-[#a0a0b8] text-sm mb-2 block">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        className="glass-input w-full"
+                        placeholder="John..."
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[#a0a0b8] text-sm mb-2 block">
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        className="glass-input w-full"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[#a0a0b8] text-sm mb-2 block">
+                        Your Message
+                      </label>
+                      <textarea
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
+                        className="glass-input w-full resize-none"
+                        placeholder="Hello Muhammad..."
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 bg-[#7c4dff] text-white font-semibold rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(124,77,255,0.4)] active:scale-95 touch-manipulation"
+                    >
+                      <FiSend size={16} />
+                      Send Message
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-10 text-center">
+                  <FiCheckCircle
+                    className="text-[#7c4dff] mb-4 animate-bounce"
+                    size={48}
+                  />
+                  <h3 className="font-['Space_Grotesk'] text-xl font-medium text-white mb-2">
+                    Message Drafted!
+                  </h3>
+                  <p className="text-[#a0a0b8] text-sm mb-6 max-w-[300px] mx-auto">
+                    Please send the email using your preferred mail app that just opened.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', message: '' });
+                    }}
+                    className="px-6 py-2.5 border border-[rgba(124,77,255,0.3)] text-white font-medium rounded-full text-sm transition-all duration-300 hover:bg-[rgba(124,77,255,0.15)]"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
