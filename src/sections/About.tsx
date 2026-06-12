@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiPlay, FiCpu, FiCode, FiMic } from 'react-icons/fi';
+import { FiCpu, FiCode, FiMic } from 'react-icons/fi';
 
 const services = [
   {
@@ -23,29 +22,24 @@ const services = [
   },
 ];
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.5, ease: 'easeOut' as const },
-};
-
 export default function About() {
-  const [isPlaying, setIsPlaying] = useState(false);
   return (
     <section id="about" className="relative py-20 md:py-32 px-4" style={{ zIndex: 1 }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Section Title */}
         <motion.h2
-          {...fadeInUp}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="font-['Space_Grotesk'] text-3xl md:text-4xl font-semibold text-center mb-12 md:mb-16"
         >
           About <span className="text-gradient">Me</span>
         </motion.h2>
 
-        {/* Video + Bio Row — stacked on mobile, side-by-side on lg */}
+        {/* Photo + Bio Row — stacked on mobile, side-by-side on lg */}
         <div className="grid lg:grid-cols-5 gap-8 md:gap-10 mb-12 md:mb-16">
-          {/* Video */}
+          {/* Profile Photo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -54,42 +48,32 @@ export default function About() {
             className="lg:col-span-3"
           >
             <div className="glass rounded-2xl overflow-hidden">
-              <div className="relative aspect-video bg-[#0f1629] flex items-center justify-center overflow-hidden">
-                {isPlaying ? (
-                  <video
-                    controls
-                    autoPlay
-                    className="w-full h-full object-cover"
-                    playsInline
-                  >
-                    <source src="/assets/images/Ali.mp4" type="video/mp4" />
-                  </video>
-                ) : (
-                  <>
-                    <video
-                      className="w-full h-full object-cover opacity-60"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="metadata"
-                    >
-                      <source src="/assets/images/Ali.mp4" type="video/mp4" />
-                    </video>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button
-                        onClick={() => setIsPlaying(true)}
-                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[rgba(124,77,255,0.3)] backdrop-blur-sm flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-[rgba(124,77,255,0.5)] hover:scale-110 active:scale-95 touch-manipulation"
-                        aria-label="Play Event Video"
-                      >
-                        <FiPlay className="text-white ml-1" size={26} />
-                      </button>
-                    </div>
-                  </>
-                )}
+              <div className="relative aspect-video bg-[#0f1629] overflow-hidden">
+                <img
+                  src="/assets/images/ali_desk.jpg"
+                  alt="Muhammad Ali — AI Engineer at coding desk"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+                {/* Subtle gradient overlay at bottom */}
+                <div
+                  className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(to top, rgba(10,10,15,0.7), transparent)',
+                  }}
+                />
+                {/* Badge */}
+                <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#7c4dff] animate-pulse" />
+                  <span className="text-white text-xs font-medium bg-[rgba(10,10,15,0.6)] backdrop-blur-sm px-3 py-1 rounded-full">
+                    AI Engineer
+                  </span>
+                </div>
               </div>
-              <p className="text-center text-[#a0a0b8] text-xs sm:text-sm py-3">
-                Event at NIC
+              <p className="text-center text-[#a0a0b8] text-xs sm:text-sm py-3 px-4">
+                Muhammad Ali · Building the future with Agentic AI
               </p>
             </div>
           </motion.div>
@@ -99,17 +83,26 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: 0.12, ease: 'easeOut' }}
             className="lg:col-span-2 flex flex-col justify-center"
           >
             <h3 className="font-['Space_Grotesk'] text-xl md:text-2xl font-medium text-white mb-4">
               AI Software Engineer
             </h3>
             <p className="text-[#a0a0b8] leading-relaxed mb-6 text-sm md:text-base">
-              <span className="text-[#7c4dff]">Passionate AI Innovator</span> and Information Technology scholar at the University of Agriculture, focused on architecting state-of-the-art{' '}
-              <span className="text-[#7c4dff]">Agentic AI ecosystems</span>. I specialize in designing autonomous workflows, intelligent automation, and{' '}
+              <span className="text-[#7c4dff]">Passionate AI Innovator</span> and
+              Information Technology scholar at the University of Agriculture,
+              focused on architecting state-of-the-art{' '}
+              <span className="text-[#7c4dff]">Agentic AI ecosystems</span>. I
+              specialize in designing autonomous workflows, intelligent automation,
+              and{' '}
               <span className="text-[#7c4dff]">scalable full-stack applications</span>{' '}
-              that transform complex business challenges into seamless digital experiences. With a core focus on autonomous decision-making systems and robust software architecture, I am dedicated to pushing the boundaries of what's possible in the world of intelligent technology. Outside coding, you'll find me speaking on stage or exploring new AI frontiers.
+              that transform complex business challenges into seamless digital
+              experiences. With a core focus on autonomous decision-making systems
+              and robust software architecture, I am dedicated to pushing the
+              boundaries of what's possible in the world of intelligent technology.
+              Outside coding, you'll find me speaking on stage or exploring new AI
+              frontiers.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -142,7 +135,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.4, delay: 0.1 * i, ease: 'easeOut' }}
+              transition={{ duration: 0.4, delay: 0.08 * i, ease: 'easeOut' }}
               className="glass rounded-xl p-5 sm:p-6 transition-all duration-300 hover:border-[rgba(124,77,255,0.3)] hover:shadow-[0_0_30px_rgba(124,77,255,0.1)]"
             >
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[rgba(124,77,255,0.1)] flex items-center justify-center mb-4">

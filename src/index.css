@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -191,4 +191,37 @@ body {
 /* Performance: Use GPU for animations */
 .glass {
   transform: translateZ(0);
+}
+
+/* ==========================================
+   MOBILE PERFORMANCE — KEY OPTIMIZATIONS
+   ========================================== */
+
+/* On mobile: replace expensive backdrop-blur with a solid dark bg */
+@media (max-width: 767px) {
+  .glass {
+    background: rgba(12, 18, 36, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Disable float animation on mobile — saves CPU */
+  [style*="float"] {
+    animation: none !important;
+  }
+
+  /* Reduce box-shadow complexity */
+  .glass {
+    box-shadow: none;
+  }
+}
+
+/* Content-visibility: skip offscreen rendering */
+#about,
+#skills,
+#projects,
+#education,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
 }

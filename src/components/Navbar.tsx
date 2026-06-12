@@ -75,7 +75,7 @@ export default function Navbar() {
             onClick={(e) => handleClick(e, '#home')}
             className="font-['Space_Grotesk'] text-base sm:text-lg font-semibold text-white touch-manipulation"
           >
-            Muhammad's <span className="text-[#7c4dff]">Portfolio</span>
+          Muhammad <span className="text-[#7c4dff]">Ali</span>
           </a>
 
           {/* Desktop Links */}
