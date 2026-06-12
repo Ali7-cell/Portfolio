@@ -1,5 +1,6 @@
 import StarField from './components/StarField';
 import Navbar from './components/Navbar';
+import WhatsAppButton from './components/WhatsAppButton';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
@@ -27,6 +28,9 @@ function App() {
         <Contact />
         <Footer />
       </main>
+
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton />
     </>
   );
 }
