@@ -160,3 +160,35 @@
   background: rgba(124, 77, 255, 0.4);
   color: white;
 }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Better touch scrolling on mobile */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar on mobile for horizontal scroll containers */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(124, 77, 255, 0.3);
+    border-radius: 2px;
+  }
+}
+
+/* Performance: Use GPU for animations */
+.glass {
+  transform: translateZ(0);
+}

@@ -83,14 +83,14 @@ export default function Contact() {
         </motion.p>
 
         {/* Two Column Layout */}
-        <div className="grid md:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="md:col-span-2 space-y-8"
+            className="md:col-span-2 space-y-6 md:space-y-8"
           >
             {/* Email */}
             <div className="flex items-start gap-4">
@@ -130,7 +130,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-white transition-all duration-300 hover:bg-[#7c4dff] hover:shadow-[0_0_20px_rgba(124,77,255,0.4)]"
+                    className="w-11 h-11 sm:w-10 sm:h-10 rounded-full glass flex items-center justify-center text-white transition-all duration-300 hover:bg-[#7c4dff] hover:shadow-[0_0_20px_rgba(124,77,255,0.4)] active:scale-90 touch-manipulation"
                   >
                     <link.icon size={16} />
                   </a>
@@ -147,7 +147,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             className="md:col-span-3"
           >
-            <div className="glass rounded-2xl p-6 md:p-10">
+            <div className="glass rounded-2xl p-5 sm:p-6 md:p-10">
               {!submitted ? (
                 <>
                   <h3 className="font-['Space_Grotesk'] text-lg md:text-xl font-medium text-white text-center mb-6">
@@ -201,7 +201,7 @@ export default function Contact() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-3.5 bg-[#7c4dff] text-white font-semibold rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(124,77,255,0.4)]"
+                      className="w-full py-3.5 bg-[#7c4dff] text-white font-semibold rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(124,77,255,0.4)] active:scale-95 touch-manipulation"
                     >
                       <FiSend size={16} />
                       Send Message

@@ -152,14 +152,14 @@ export default function Projects() {
         </motion.p>
 
         {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-12">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3), ease: 'easeOut' }}
               className="glass rounded-xl overflow-hidden transition-all duration-300 hover:border-[rgba(124,77,255,0.3)] hover:shadow-[0_0_30px_rgba(124,77,255,0.1)] group"
             >
               {/* Image */}
@@ -167,6 +167,8 @@ export default function Projects() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -229,18 +231,20 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-          className="glass rounded-2xl p-6 md:p-8 max-w-[900px] mx-auto mb-12 flex flex-col items-center"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          className="glass rounded-2xl p-4 sm:p-6 md:p-8 max-w-[900px] mx-auto mb-10 sm:mb-12 flex flex-col items-center"
         >
-          <h3 className="font-['Space_Grotesk'] text-xl font-medium text-white mb-6 text-center">
+          <h3 className="font-['Space_Grotesk'] text-lg sm:text-xl font-medium text-white mb-4 sm:mb-6 text-center">
             GitHub Contributions
           </h3>
-          <div className="w-full overflow-x-auto py-2 flex justify-center">
+          <div className="w-full overflow-x-auto py-2 flex justify-start sm:justify-center scrollbar-thin">
             <img
               src="https://ghchart.rshah.org/7c4dff/Ali7-cell"
               alt="Ali7-cell's GitHub Contributions"
-              className="min-w-[700px] md:w-full object-contain filter brightness-110 contrast-120 opacity-95 hover:opacity-100 transition-opacity duration-300"
+              loading="lazy"
+              decoding="async"
+              className="min-w-[600px] sm:min-w-[700px] md:w-full object-contain filter brightness-110 contrast-120 opacity-95 hover:opacity-100 transition-opacity duration-300"
             />
           </div>
         </motion.div>
